@@ -1,12 +1,14 @@
-# myweb
+# mywproject
 
 #### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+项目用于个人开发学习研究
 
 #### 软件架构
-软件架构说明
+使用SpringCloudAlibaba-2021.0.5.0作为整体架构（Nacos-2.2.0，Sentinal-1.8.6，SpringCloud-2021.0.5，Springboot-2.6.13）
+使用nginx-1.24.0代理前端静态资源以及后端接口服务
+数据库：Mysql-5.7
+缓存数据库：Redis-7.0
+消息中间件:RabbitMQ-4.9.4
 
 
 #### 安装教程
