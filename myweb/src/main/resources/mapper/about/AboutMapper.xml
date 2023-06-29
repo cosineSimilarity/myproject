@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cosine.myweb.dao.about.AboutMapper">
+    <insert id="createPageViewCount2Mysql" parameterType="com.cosine.myweb.entity.about.PageViewInfo" >
+        insert into myweb_pageview(pageview_count,page_name)
+        values (#{pageviewCount},#{pageName})
+    </insert>
+
+    <update id="updatePageViewCount2Mysql" parameterType="com.cosine.myweb.entity.about.PageViewInfo">
+        update myweb_pageview set pageview_count=#{pageviewCount} where page_name=#{pageName}
+    </update>
+
+    <select id="queryPageViewCountByPageName" parameterType="java.lang.String" resultType="com.cosine.myweb.entity.about.PageViewInfo">
+        select * from myweb_pageview where page_name=#{pageName}
+    </select>
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cosine.myweb.dao.contact.ContactmeMapper">
+    <insert id="addContactmeInfo" parameterType="com.cosine.myweb.entity.contact.ContactmeInfo" >
+        insert into myweb_contactme(contactme_name,contactme_email,contactme_subject,contactme_comment)
+        values (#{contactmeName},#{contactmeEmail},#{contactmeSubject},#{contactmeComment})
+    </insert>
+</mapper>
