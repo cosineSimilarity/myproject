@@ -43,9 +43,8 @@ public class SyncRedis2MysqlScheduler {
     /**
      * @author Cosine
      * @param[]
-     * @return void
-     * @time 2023/7/4 23:22
-     * @description 同步页面访问量到mysql，每6小时执行一次
+     * @time 2023/7/5 4:46
+     * @description
      */
     @Scheduled(cron = "0 0 0,6,12,18 * * ?")
     public void syncPageViewCount2Mysql(){
@@ -62,7 +61,7 @@ public class SyncRedis2MysqlScheduler {
             return null;
         });
         //将result转换为list类型
-        List<String> pageViewCountList = (List<String>) ListUtil.obj2List(resutl,String.class);
+        List<? extends String> pageViewCountList = ListUtil.obj2List(resutl,String.class);
         log.info("redis中获取的页面访问量value值：{}", JSON.toJSONString(pageViewCountList));
         //组装访问量数据
         List<PageViewInfo> pageViewInfoList = new ArrayList<>();
@@ -77,12 +76,12 @@ public class SyncRedis2MysqlScheduler {
         SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH);
         AboutMapper aboutMapper = session.getMapper(AboutMapper.class);
         try{
-            if(pageViewInfoList!=null && pageViewInfoList.size()>0){
+            if(pageViewInfoList.size()>0){
                 for(PageViewInfo pageViewInfo:pageViewInfoList){
                     aboutMapper.updatePageViewCount2Mysql(pageViewInfo);
                 }
                 session.commit();
-                log.error("同步页面访问量到mysql成功");
+                log.info("同步页面访问量到mysql成功");
             }else {
                 log.error("定时任务：同步页面访问量到mysql，任务失败！");
                 return;
