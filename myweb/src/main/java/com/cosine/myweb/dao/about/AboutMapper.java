@@ -3,6 +3,8 @@ package com.cosine.myweb.dao.about;
 import com.cosine.myweb.entity.about.PageViewInfo;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author Cosine
  * @version 1.0.0
@@ -39,4 +41,8 @@ public interface AboutMapper {
      * @description 通过页面名称查找页面访问量
      */
     PageViewInfo queryPageViewCountByPageName(String pageName);
+
+    List<PageViewInfo> queryAllPageViewCount();
+
+    List<String> queryAllPageViewCountKey();
 }

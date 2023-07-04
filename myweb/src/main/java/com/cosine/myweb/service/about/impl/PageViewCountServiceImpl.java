@@ -6,6 +6,8 @@ import com.cosine.myweb.service.about.PageViewCountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Cosine
  * @version 1.0.0
@@ -31,5 +33,15 @@ public class PageViewCountServiceImpl implements PageViewCountService {
     @Override
     public PageViewInfo queryPageViewCountByPageName(String pageName) {
         return aboutMapper.queryPageViewCountByPageName(pageName);
+    }
+
+    @Override
+    public List<PageViewInfo> queryAllPageViewCount() {
+        return aboutMapper.queryAllPageViewCount();
+    }
+
+    @Override
+    public List<String> queryAllPageViewCountKey() {
+        return aboutMapper.queryAllPageViewCountKey();
     }
 }

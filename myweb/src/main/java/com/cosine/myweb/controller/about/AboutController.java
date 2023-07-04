@@ -7,6 +7,7 @@ import com.cosine.myweb.service.about.PageViewCountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AboutController {
 
     @Autowired
-    private RedisTemplate<String,String> redisTemplate;
+    private StringRedisTemplate redisTemplate;
 
     @Autowired
     private PageViewCountService pageViewCountService;
@@ -59,6 +60,7 @@ public class AboutController {
                 pageViewInfo = new PageViewInfo();
                 pageViewInfo.setPageName(pageName);
                 pageViewInfo.setPageviewCount(pageViewCount+1);
+                pageViewInfo.setRedisKey(keyName);
                 boolean isSave= pageViewCountService.savePageViewCount2Mysql(pageViewInfo, PageViewCountService.FLAG_CREATE);
                 if(!isSave){
                     resModel.setStatusCode(StatusCode.FAIL_CODE);

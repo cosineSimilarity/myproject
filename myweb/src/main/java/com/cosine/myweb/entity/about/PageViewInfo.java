@@ -14,6 +14,7 @@ public class PageViewInfo {
     private long pageviewCount;
     private LocalDateTime updateTime;
     private String pageName;
+    private String redisKey;
 
     public int getId() {
         return id;
@@ -47,6 +48,14 @@ public class PageViewInfo {
         this.pageName = pageName;
     }
 
+    public String getRedisKey() {
+        return redisKey;
+    }
+
+    public void setRedisKey(String redisKey) {
+        this.redisKey = redisKey;
+    }
+
     @Override
     public String toString() {
         return "PageViewInfo{" +
@@ -54,6 +63,7 @@ public class PageViewInfo {
                 ", pageviewCount=" + pageviewCount +
                 ", updateTime=" + updateTime +
                 ", pageName='" + pageName + '\'' +
+                ", redisKey='" + redisKey + '\'' +
                 '}';
     }
 }

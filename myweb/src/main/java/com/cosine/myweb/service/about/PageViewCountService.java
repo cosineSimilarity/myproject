@@ -2,6 +2,8 @@ package com.cosine.myweb.service.about;
 
 import com.cosine.myweb.entity.about.PageViewInfo;
 
+import java.util.List;
+
 /**
  * @author Cosine
  * @version 1.0.0
@@ -17,4 +19,8 @@ public interface PageViewCountService {
     boolean savePageViewCount2Mysql(PageViewInfo pageViewInfo, String flag);
 
     PageViewInfo queryPageViewCountByPageName(String pageName);
+
+    List<PageViewInfo> queryAllPageViewCount();
+
+    List<String> queryAllPageViewCountKey();
 }

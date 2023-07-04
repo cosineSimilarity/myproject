@@ -4,15 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cosine.myweb.dao.about.AboutMapper">
     <insert id="createPageViewCount2Mysql" parameterType="com.cosine.myweb.entity.about.PageViewInfo" >
-        insert into myweb_pageview(pageview_count,page_name)
-        values (#{pageviewCount},#{pageName})
+        insert into myweb_pageview(pageview_count,page_name,redis_key)
+        values (#{pageviewCount},#{pageName},#{redisKey})
     </insert>
 
     <update id="updatePageViewCount2Mysql" parameterType="com.cosine.myweb.entity.about.PageViewInfo">
-        update myweb_pageview set pageview_count=#{pageviewCount} where page_name=#{pageName}
+        update myweb_pageview set pageview_count=#{pageviewCount} where 1=1
+        <if test="pageName!=null and pageName!=''">
+            and page_name=#{pageName}
+        </if>
+        <if test="redisKey!=null and redisKey!=''">
+            and redis_key=#{redisKey}
+        </if>
+
     </update>
 
     <select id="queryPageViewCountByPageName" parameterType="java.lang.String" resultType="com.cosine.myweb.entity.about.PageViewInfo">
         select * from myweb_pageview where page_name=#{pageName}
+    </select>
+
+    <select id="queryAllPageViewCount" resultType="com.cosine.myweb.entity.about.PageViewInfo">
+        select * from myweb_pageview
+    </select>
+
+    <select id="queryAllPageViewCountKey" resultType="java.lang.String">
+        select redis_key from myweb_pageview
     </select>
 </mapper>
