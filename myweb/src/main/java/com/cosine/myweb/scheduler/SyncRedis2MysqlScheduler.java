@@ -43,7 +43,7 @@ public class SyncRedis2MysqlScheduler {
     /**
      * @author Cosine
      * @param[]
-     * @time 2023/7/5 4:46
+     * @time 2023/7/5 4:460
      * @description
      */
     @Scheduled(cron = "0 0 0,6,12,18 * * ?")
